@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telnet 和 Ping 检测工具</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="container">
+    <h1>网络检测工具</h1>
+    <div class="form-group">
+        <label for="ipRange">IP 地址段 (例如: 192.168.1.1-192.168.1.255):</label>
+        <input type="text" id="ipRange" placeholder="输入 IP 地址段">
+    </div>
+    <div class="form-group">
+        <label for="port">端口号 (例如: 9100):</label>
+        <input type="text" id="port" placeholder="输入端口号">
+    </div>
+    <button onclick="scanTelnet()">Telnet 检测</button>
+    <button onclick="scanPing()">Ping 检测</button>
+
+    <div id="telnetResults">
+        <h2>Telnet 检测结果</h2>
+        <table id="telnetResultsTable">
+            <thead>
+            <tr>
+                <th>IP 地址</th>
+                <th>端口</th>
+                <th>状态</th>
+                <th>URI</th>
+            </tr>
+            </thead>
+            <tbody id="telnetResultsBody">
+            <!-- 结果将在这里动态添加 -->
+            </tbody>
+        </table>
+    </div>
+
+    <div id="pingResults">
+        <h2>Ping 检测结果</h2>
+        <table id="pingResultsTable">
+            <thead>
+            <tr>
+                <th>IP 地址</th>
+                <th>状态</th>
+            </tr>
+            </thead>
+            <tbody id="pingResultsBody">
+            <!-- 结果将在这里动态添加 -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
