@@ -38,14 +38,21 @@ type PingResult struct {
 }
 
 func main() {
+	// 定义 port 参数，默认值为 8080
+	port := flag.String("port", "8080", "HTTP server port")
+	addr := flag.String("addr", "0.0.0.0", "HTTP server address")
+	flag.Parse()
 	// 提供静态文件服务
 	fs := http.FileServer(http.Dir("./"))
 	http.Handle("/", fs)
 	http.HandleFunc("/scan", scanHandler)
 	http.HandleFunc("/scanPing", scanPingHandler)
 
-	fmt.Println("服务器已启动，访问 http://localhost:8080")
-	http.ListenAndServe(":8080", nil)
+	// 使用从命令行参数读取的端口号
+	fmt.Printf("服务器已启动，访问 http://%s:%s\n", *addr, *port)
+	if err := http.ListenAndServe(":"+*port, nil); err != nil {
+		fmt.Printf("启动服务器失败: %v\n", err)
+	}
 }
 
 // 检测处理器
